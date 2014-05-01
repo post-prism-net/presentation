@@ -1,5 +1,5 @@
 /* Modernizr (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-shiv-load-mq-cssclasses-touch-canvas
+ * Build: http://modernizr.com/download/#-shiv-load-mq-cssclasses-touch
  */
 ;
 
@@ -184,11 +184,7 @@ window.Modernizr = (function( window, document, undefined ) {
             }
         }
         return false;
-    }    tests['canvas'] = function() {
-        var elem = document.createElement('canvas');
-        return !!(elem.getContext && elem.getContext('2d'));
-    };
-
+    }
     tests['touch'] = function() {
         var bool;
 

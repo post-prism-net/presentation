@@ -33,6 +33,7 @@ var site = ( function() {
         sections.init();
         nav.init();
         win.init();
+        content.init();
     }
 
     var bindEventHandlers = function() {
@@ -42,6 +43,7 @@ var site = ( function() {
                 debuglog( 'prev' );
                 e.preventDefault();
                 if( sections.getPrev() ) {
+                    debuglog( 'prev: ' + sections.getPrev() );
                     location.hash = '/' + sections.getPrev() + '/';
                 }
             }
@@ -51,6 +53,7 @@ var site = ( function() {
                 e.preventDefault();
 
                 if( sections.getNext() ) { 
+                    debuglog( 'next: ' + sections.getNext() );
                     location.hash = '/' + sections.getNext() + '/';
                 }
             }
@@ -161,8 +164,8 @@ var site = ( function() {
     var sections = ( function() {
 
         var cache = new Array();
-        var current;
-        var _current;
+        var currentSlide;
+        var _currentSlide;
 
         var init = function() {
             debuglog( 'site.sections.init()' );
@@ -177,12 +180,30 @@ var site = ( function() {
 
         var createCache = function() {
 
+            var i = 0;
             $( 'section' ).each( function() {
 
                 var section = new Array();
                 section['slug'] = $( this ).attr( 'data-section' );
                 section['title'] = $( this ).attr( 'data-title' );
                 section['offset'] = Math.floor( $( this ).position().top );
+
+                var slides = new Array();
+                $( this ).find( 'slide' ).each( function() {
+
+                    var slide = new Array();
+                    var slug = 'slide-' + i;
+                    $( this ).attr( 'data-slide', slug );
+                    
+                    slide['slug'] = slug;
+                    slide['offset'] = Math.floor( $( this ).position().top );
+                    
+                    i++;
+
+                    slides.push( slide );
+                } );
+
+                section['slides'] = slides;
 
                 cache.push( section );
 
@@ -195,28 +216,36 @@ var site = ( function() {
 
             for( var i = 0; i < cache.length; i++ ) {
 
-                if( scrollTop > cache[i]['offset'] - ( winHeight * 2 / 3 ) ) {
-                    current = cache[i]['slug']
+                for( var j = 0; j < cache[i]['slides'].length; j++ ) {
+
+                    if( scrollTop > cache[i]['slides'][j]['offset'] - ( winHeight * 2 / 3 ) ) {
+                        currentSlide = cache[i]['slides'][j]['slug'];
+                    }
+
                 }
 
             }
 
-            if( current != _current ) {
-                change( current );
+            if( currentSlide != _currentSlide ) {
+                change( currentSlide );
             }
 
-            _current = current;
+            _currentSlide = currentSlide;
 
         }
 
         var change = function( slug ) {
             debuglog( 'site.sections.change( ' + slug + ' )' );
 
-            nav.mark( slug );
+            var currentSection = $( '[data-slide="' + slug + '"]' ).closest( 'section' ).attr( 'data-section' );
+
+            nav.mark( currentSection );
             mark( slug );
 
+            // currentSection = $( '[data-slide="' + slug + '"]' ).closest( 'section' ).attr( 'data-section' );
+
             // only set path if it's NOT the first deeplink of this visit
-            if( _current && !isJumping ) {
+            if( _currentSlide && !isJumping ) {
                 path.set( slug );
             }
 
@@ -225,23 +254,36 @@ var site = ( function() {
         var mark = function( slug ) {
             debuglog( 'site.sections.mark( ' + slug + ' )' );
 
-            $( 'section' ).removeClass( 'current' );
-            $( 'section[data-section="' + slug + '"]' ).addClass( 'current' );
+            $( 'slide' ).removeClass( 'current' );
+            $( 'slide[data-slide="' + slug + '"]' ).addClass( 'current' );
 
         }
 
         var getNext = function() {
 
-            var index;
+            var index = new Array();
 
             for( i = 0; i < cache.length; i++ ) {
-                if( cache[i]['slug'] == current ) {
-                    index = i;
+                for( j = 0; j < cache[i]['slides'].length; j++ ) {
+
+                    if( cache[i]['slides'][j]['slug'] == currentSlide ) {
+                        index['section'] = i;
+                        index['slide'] = j;
+                    }
                 }
             }
 
-            if( index < cache.length - 1 ) {
-                var next = cache[index + 1]['slug'];
+
+            // jump to new section
+            if( index['slide'] > cache[index['section']]['slides'].length - 2  ) {
+                index['section'] = index['section'] + 1;
+                index['slide'] = -1;
+            }
+
+            debuglog( index );
+
+            if( index['section'] < cache.length ) {
+                var next = cache[index['section']]['slides'][index['slide'] + 1]['slug'];
                 return next;
             } else {
                 return false;
@@ -249,21 +291,33 @@ var site = ( function() {
         }
 
         var getPrev = function() {
-
-            var index;
+            var index = new Array();
 
             for( i = 0; i < cache.length; i++ ) {
-                if( cache[i]['slug'] == current ) {
-                    index = i;
+                for( j = 0; j < cache[i]['slides'].length; j++ ) {
+
+                    if( cache[i]['slides'][j]['slug'] == currentSlide ) {
+                        index['section'] = i;
+                        index['slide'] = j;
+                    }
                 }
             }
 
-            if( index > 0 ) {
-                var prev = cache[index - 1]['slug'];
+
+            // jump to new section
+            if( index['slide'] == 0 ) {
+                index['section'] = index['section'] - 1;
+                index['slide'] = cache[index['section']]['slides'].length;
+            }
+
+            debuglog( index );
+
+            if( index['section'] > -1 ) {
+                var prev = cache[index['section']]['slides'][index['slide'] - 1]['slug'];
                 return prev;
             } else {
                 return false;
-            } 
+            }
         }
         
         var getSections = function() {
@@ -271,7 +325,7 @@ var site = ( function() {
 
             return cache;
         }
-        
+
 
         return {
             init:        function() { init(); },
@@ -430,10 +484,10 @@ var site = ( function() {
 
             path = path.split( '/' );
 
-            section = path[1] || 'home';
+            slide = path[1] || 'home';
             
-            if( section ) {
-                var target = $( '[data-section="' + section + '"]' );
+            if( slide ) {
+                var target = $( '[data-slide="' + slide + '"]' );
                 win.scrollTo( target );
             }
 
@@ -442,6 +496,40 @@ var site = ( function() {
         return {
             init: function() { init(); },
             set:  function( path ) { set( path ) }
+        }
+
+    } )();
+
+    // module content
+    var content = ( function() {
+
+        var init = function() {
+            debuglog( 'site.content.init()' );
+            bindEventHandlers();
+
+            layoutBlockquotes();
+        }
+
+        var bindEventHandlers = function() {
+
+
+        }
+
+        var layoutBlockquotes = function() {
+
+            $( 'blockquote' ).each( function() {
+
+                var marginLeft = Math.floor( Math.random() * 40 );
+                
+                $( this ).css( {
+                    'marginLeft' : marginLeft + '%'
+                } );
+            } );
+
+        }
+
+        return {
+            init: function() { init(); }
         }
 
     } )();
