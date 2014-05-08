@@ -38,11 +38,11 @@ var site = ( function() {
 
     var bindEventHandlers = function() {
 
-        $( document ).on( 'keypress', function( e ) {
+        $( document ).on( 'keyup', function( e ) {
             if( e.keyCode == 37 || e.keyCode == 38 ) {
                 debuglog( 'prev' );
                 e.preventDefault();
-                if( sections.getPrev() ) {
+                if( sections.getPrev() && !isJumping ) {
                     debuglog( 'prev: ' + sections.getPrev() );
                     location.hash = '/' + sections.getPrev() + '/';
                 }
@@ -52,12 +52,20 @@ var site = ( function() {
                 debuglog( 'next' );
                 e.preventDefault();
 
-                if( sections.getNext() ) { 
+                if( sections.getNext() && !isJumping ) { 
                     debuglog( 'next: ' + sections.getNext() );
                     location.hash = '/' + sections.getNext() + '/';
                 }
             }
-        } )
+        } );
+
+        $( document ).on( 'click', 'video', function( e ) {
+
+            var el = $( this );
+            el.toggleClass( 'full' );
+
+        });
+
 
     }
 
@@ -256,6 +264,8 @@ var site = ( function() {
 
             $( 'slide' ).removeClass( 'current' );
             $( 'slide[data-slide="' + slug + '"]' ).addClass( 'current' );
+
+            $( 'body' ).attr( 'data-slide', slug );
 
         }
 
