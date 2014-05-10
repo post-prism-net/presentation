@@ -9,16 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="cleartype" content="on"> 
 
-    <link rel="stylesheet" href="js/videojs/video-js.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
     <!-- // <script src="js/src/dependencies-global/jquery.js"></script> -->
     <!-- // <script src="js/src/dependencies-global/jquery.address-1.5.js"></script> -->
     <script src="js/dependencies-global.min.js"></script>
-    <script src="js/videojs/video.js"></script>
-    <script>
-        videojs.options.flash.swf = "http://localhost/post-prism/presentation/js/videojs/video-js.swf"
-    </script>
     <script src="js/src/site-global.js"></script>
 </head>
 <body>
@@ -468,6 +463,13 @@ given society.&ldquo;
             <img src="img/h0110w-interface.svg">
         </slide>
 
+        <slide>
+          <div class="browser">
+            <a href="#"></a><address></address>
+            <iframe src="http://localhost/post-prism/h0110w"></iframe>
+          </div>
+        </slide>
+
         <slide class="diagram diagram-h0110w-funktion">
             <diagram>
                 <item class="chrome"></item>
@@ -497,8 +499,23 @@ given society.&ldquo;
             <h3>destrucktives Foto-Blogging</h3>
         </slide>
 
+        <slide>
+            <video controls width="1920" height="1080">
+                <source src="video/compost.mp4" type="video/mp4">
+                <source src="video/compost.ogv" type="video/ogg">
+                <source src="video/compost.webm" type="video/webm">
+            </video>
+        </slide>
+
         <slide class="interface interface-compost">
             <img src="img/compost-interface.svg">
+        </slide>
+
+        <slide>
+          <div class="browser">
+            <a href="#"></a>
+            <iframe src="http://post-prism.net/compost"></iframe>
+          </div>
         </slide>
 
         <slide class="serie">
@@ -522,9 +539,62 @@ given society.&ldquo;
     </section>
 
     <section data-section="public-space" data-title="public space">
+        
         <slide>
             <h3>/ public space</h3>
         </slide>
+
+        <slide>
+            <video controls width="1920" height="1080">
+                <source src="video/public-space.mp4" type="video/mp4">
+                <source src="video/public-space.ogv" type="video/ogg">
+                <source src="video/public-space.webm" type="video/webm">
+            </video>
+        </slide>
+
+        <slide>
+          <img src="img/screenshot-publicspace.png">
+        </slide>
+
+        <slide>
+
+          <div class="marker">
+            <img src="img/marker-1.svg">
+            <img src="img/marker-2.svg">
+            <img src="img/marker-3.svg">
+          </div>
+
+          <p>
+            &gt; IP der Benutzer_in <br>
+            &gt; URL der Seite <br>
+            &gt; Position <br>
+            &gt; zeitlicher Zusammenhang
+          </p>
+
+        </slide>
+
+        <slide>
+          <h3>konkret ⇔ abstrakt</h3>
+        </slide>
+
+        <slide>
+          <h3>r&auml;umlich / lokal</h3>
+        </slide>
+
+        <slide>
+          <cloud>
+            <node>Raspberry&nbsp;Pi</node>
+            <node>nginx&nbsp;Webserver</node>
+            <node>privoxy&nbsp;Proxyserver</node>
+            <node>nodeJS&nbsp;Socketserver</node>
+            <node>iptables&nbsp;Firewall</node>
+          </cloud>
+        </slide>
+
+        <slide>
+          <h2>post-prism.net</h2>
+        </slide>
+
     </section>
 </body>
 </html>

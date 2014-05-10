@@ -34,11 +34,12 @@ var site = ( function() {
         nav.init();
         win.init();
         content.init();
+        browser.init();
     }
 
     var bindEventHandlers = function() {
 
-        $( document ).on( 'keyup', function( e ) {
+        $( document ).on( 'keydown', function( e ) {
             if( e.keyCode == 37 || e.keyCode == 38 ) {
                 debuglog( 'prev' );
                 e.preventDefault();
@@ -138,6 +139,8 @@ var site = ( function() {
 
                 var distance = Math.floor( Math.abs( position - winScrollTop ) );
                 var duration = Math.floor( distance / scrollSpeed );
+
+                duration = 250;
 
                 debuglog( 'position: ' + position );
                 debuglog( 'duration: ' + duration );
@@ -543,6 +546,48 @@ var site = ( function() {
         }
 
     } )();
+
+    // module browser
+    var browser = ( function() {
+
+        var init = function() {
+            debuglog( 'site.browser.init()' );
+            bindEventHandlers();
+        }
+
+        var bindEventHandlers = function() {
+
+
+            window.setInterval( function() {
+
+                var el = $( '.browser > iframe' ).first();
+
+                var contentWnd = el.get(0).contentWindow;
+                var url = contentWnd.window.location;
+
+                debuglog( url );
+
+                el.siblings( 'address' ).text( url );
+
+            }, 1000 );
+
+            $( document ).on( 'click', '.browser > a', function( e ) {
+                e.preventDefault();
+
+                $( this ).closest( '.browser' ).toggleClass( 'fixed' );
+            } );
+
+        }
+
+        return {
+            init: function() { init(); }
+        }
+
+    } )();
+
+    return {
+        init: function() { init(); }
+    }
 
 
     // module 

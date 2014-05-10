@@ -623,6 +623,59 @@ img {
   max-width: 90%;
   margin: auto auto;
 }
+.browser {
+  position: relative;
+  width: 80%;
+  height: 0;
+  margin: auto;
+  padding: 50% 0 0 0;
+  border: 1px solid #ffffff;
+  background: #000000;
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.browser.fixed {
+  position: fixed;
+  left: 2em;
+  right: 2em;
+  top: 2em;
+  bottom: 2em;
+  z-index: 999;
+  width: auto;
+  height: auto;
+}
+.browser > a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 1.25%;
+  height: 2%;
+  margin: 0.75% 0 0 1%;
+  border: 1px solid #ffffff;
+  border: 50%;
+}
+.browser > address {
+  position: absolute;
+  left: 0;
+  right: 4%;
+  top: 0;
+  display: block;
+  margin: 0.75% 0 0 4%;
+  font-size: 0.5em;
+  font-style: normal;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.browser > iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 98%;
+  height: 93%;
+  margin: 3% 0 0 1%;
+}
 cloud {
   position: absolute;
   left: 0;
@@ -933,6 +986,65 @@ cloud > node:nth-child( 6 ) {
   100% {
     -webkit-transform: translate(0px, 0px);
     transform: translate(0px, 0px);
+  }
+}
+.marker {
+  position: relative;
+  float: left;
+  width: 50%;
+  max-width: 500px;
+  height: 0;
+  padding: 66.66% 0 0 0;
+}
+.marker > img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  -webkit-animation: carousel 12s infinite linear forwards;
+  animation: carousel 12s infinite linear forwards;
+}
+.marker > img:nth-child( 1 ) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.marker > img:nth-child( 2 ) {
+  -webkit-animation-delay: 3s;
+  animation-delay: 3s;
+}
+.marker > img:nth-child( 3 ) {
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
+}
+@-webkit-keyframes carousel {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+@keyframes carousel {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
   }
 }
 .visibility table {
