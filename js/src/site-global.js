@@ -193,6 +193,20 @@ var site = ( function() {
 
         var bindEventHandlers = function() {
 
+            $( document ).on( 'click', 'slide', function() {
+
+                var val = $( this ).attr( 'data-step' );
+
+                if( val ) {
+
+                    var val = parseInt( val );
+                    val++;
+
+                    $( this ).attr( 'data-step', val );
+
+                }
+
+            } )
         }
 
         var createCache = function() {

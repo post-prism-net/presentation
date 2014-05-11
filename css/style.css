@@ -296,6 +296,12 @@ cite::before {
   margin: 0.75em 0 0 -1.8em;
   background: #ffffff;
 }
+blockquote > span {
+  color: rgba(255, 255, 255, 0.4);
+}
+pre {
+  font-size: 0.5em;
+}
 .index {
   margin: 0;
   padding: 0 0 0 9em;
@@ -1054,6 +1060,7 @@ cloud > node:nth-child( 6 ) {
   width: 50%;
   max-width: 500px;
   height: 0;
+  margin: 0 0 0 5%;
   padding: 66.66% 0 0 0;
 }
 .marker > img {
@@ -1078,6 +1085,9 @@ cloud > node:nth-child( 6 ) {
 .marker > img:nth-child( 3 ) {
   -webkit-animation-delay: 6s;
   animation-delay: 6s;
+}
+.marker + p {
+  margin-top: 4em;
 }
 @-webkit-keyframes carousel {
   0% {
@@ -1117,6 +1127,53 @@ cloud > node:nth-child( 6 ) {
 }
 .cloud {
   overflow: hidden;
+}
+.covers > pre {
+  position: absolute;
+  left: 4em;
+  top: 14em;
+}
+.covers > pre:nth-child( 1 ) {
+  margin: 8em 0 0 0;
+}
+.covers > pre:nth-child( 2 ) {
+  left: 50%;
+  margin: -18em 0 0 -18em;
+}
+.covers > pre:nth-child( 3 ) {
+  left: auto;
+  right: 4em;
+}
+.scheme-exploit svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 40%;
+  height: auto;
+  margin: -10% 0 0 -20%;
+}
+.scheme-exploit svg * {
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+.scheme-exploit[data-step="0"] svg .node {
+  opacity: 0;
+}
+.scheme-exploit[data-step="0"] svg .connection {
+  opacity: 0;
+}
+.scheme-exploit[data-step="1"] svg .node {
+  opacity: 1;
+}
+.scheme-exploit[data-step="1"] svg .connection {
+  opacity: 0;
+}
+.scheme-exploit[data-step="2"] svg .node {
+  opacity: 1;
+}
+.scheme-exploit[data-step="2"] svg .connection {
+  opacity: 1;
 }
 /* modal */
 .modal {

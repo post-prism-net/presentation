@@ -368,6 +368,14 @@ cite {
   }
 }
 
+blockquote > span {
+  color: fade( @text, 40% );
+}
+
+pre {
+  font-size: 0.5em;
+}
+
 .index {
   margin: 0;
   padding: 0 0 0 9em;
@@ -993,6 +1001,7 @@ cloud > node:nth-child( 6 ) {
   width: 50%;
   max-width: 500px;
   height: 0;
+  margin: 0 0 0 5%;
   padding: 66.66% 0 0 0;
 }
 
@@ -1022,8 +1031,8 @@ cloud > node:nth-child( 6 ) {
   animation-delay: 6s;
 }
 
-.marker {
-
+.marker + p {
+  margin-top: 4em
 }
 
 @keyframes carousel {
@@ -1060,6 +1069,77 @@ cloud > node:nth-child( 6 ) {
 
 .cloud {
   overflow: hidden;
+}
+
+.covers {
+
+}
+
+.covers > pre {
+  position: absolute;
+  left: 4em;
+  top: 14em;
+}
+
+.covers > pre:nth-child( 1 ) {
+  margin: 8em 0 0 0;
+}
+
+.covers > pre:nth-child( 2 ) {
+  left: 50%;
+  margin: -18em 0 0 -18em;
+}
+
+.covers > pre:nth-child( 3 ) {
+  left: auto;
+  right: 4em;
+}
+
+.scheme-exploit {
+
+}
+
+.scheme-exploit svg { 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  display: block;
+  width: 40%;
+  height: auto;
+  margin: -10% 0 0 -20%;
+
+  & * {
+    transition: all 500ms ease;
+  }
+
+}
+
+.scheme-exploit[data-step="0"] {
+  & svg .node {
+    opacity: 0;
+  }
+  & svg .connection {
+    opacity: 0;
+  }
+}
+
+.scheme-exploit[data-step="1"] {
+  & svg .node {
+    opacity: 1;
+  }
+  & svg .connection {
+    opacity: 0;
+  }
+}
+
+.scheme-exploit[data-step="2"] {
+  & svg .node {
+    opacity: 1;
+  }
+  & svg .connection {
+    opacity: 1;
+  }
 }
 
 // intro 
