@@ -140,7 +140,7 @@ nav {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
-[data-slide="slide-3"] nav {
+[data-slide="slide-5"] nav {
   top: -3em;
   opacity: 0;
 }
@@ -675,6 +675,66 @@ img {
   width: 98%;
   height: 93%;
   margin: 3% 0 0 1%;
+}
+.headlines {
+  position: relative;
+}
+.headline {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+.current .headline {
+  opacity: 1;
+  -webkit-animation: rotate-in 1s ease forwards;
+  animation: rotate-in 1s ease forwards;
+}
+.current .headline-2 {
+  -webkit-animation-name: rotate-in-2;
+  animation-name: rotate-in-2;
+}
+@-webkit-keyframes rotate-in {
+  0% {
+    -webkit-transform: rotate(-960deg) scale(0);
+    transform: rotate(-960deg) scale(0);
+  }
+  100% {
+    -webkit-transform: rotate(5deg) scale(1);
+    transform: rotate(5deg) scale(1);
+  }
+}
+@keyframes rotate-in {
+  0% {
+    -webkit-transform: rotate(-960deg) scale(0);
+    transform: rotate(-960deg) scale(0);
+  }
+  100% {
+    -webkit-transform: rotate(5deg) scale(1);
+    transform: rotate(5deg) scale(1);
+  }
+}
+@-webkit-keyframes rotate-in-2 {
+  0% {
+    -webkit-transform: rotate(-960deg) scale(0);
+    transform: rotate(-960deg) scale(0);
+  }
+  100% {
+    -webkit-transform: rotate(-5deg) scale(1);
+    transform: rotate(-5deg) scale(1);
+  }
+}
+@keyframes rotate-in-2 {
+  0% {
+    -webkit-transform: rotate(-960deg) scale(0);
+    transform: rotate(-960deg) scale(0);
+  }
+  100% {
+    -webkit-transform: rotate(-5deg) scale(1);
+    transform: rotate(-5deg) scale(1);
+  }
 }
 cloud {
   position: absolute;

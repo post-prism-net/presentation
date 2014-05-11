@@ -67,6 +67,12 @@ var site = ( function() {
 
         });
 
+        setTimeout( function() {
+
+            $( 'slide' ).first().focus();
+
+        }, 1500 )
+
 
     }
 
