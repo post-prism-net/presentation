@@ -146,7 +146,7 @@ var site = ( function() {
                 var distance = Math.floor( Math.abs( position - winScrollTop ) );
                 var duration = Math.floor( distance / scrollSpeed );
 
-                duration = 250;
+                duration = 500;
 
                 debuglog( 'position: ' + position );
                 debuglog( 'duration: ' + duration );
