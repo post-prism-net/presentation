@@ -1175,6 +1175,10 @@ cloud > node:nth-child( 6 ) {
 .scheme-exploit[data-step="2"] svg .connection {
   opacity: 1;
 }
+.scheme-publicspace img {
+  width: 50%;
+  margin-top: -10%;
+}
 /* modal */
 .modal {
   position: fixed;
