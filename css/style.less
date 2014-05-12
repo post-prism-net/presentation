@@ -833,6 +833,41 @@ img {
   }
 }
 
+.url {
+  display: block;
+  overflow: hidden;
+}
+
+url {
+  width: 100%;
+  margin: 2em 0 0 0;
+  font-size: 1.6em;
+  color: fade( @text, 40% );
+
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+url > .fragment {
+  color: @text;
+}
+
+hash {
+  display: block;
+  margin: 0 auto;
+
+  font-size: 8em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.screenshot-share-h0110w img {
+  width: 80%;
+  margin-top: -4em;
+}
+
 cloud {
   position: absolute;
   left: 0;
@@ -1032,7 +1067,8 @@ cloud > node:nth-child( 6 ) {
 }
 
 .marker + p {
-  margin-top: 4em
+  margin-top: 4em;
+  font-size: 1.4em;
 }
 
 @keyframes carousel {
@@ -1142,9 +1178,32 @@ cloud > node:nth-child( 6 ) {
   }
 }
 
-.scheme-publicspace img {
+.scheme-publicspace div {
   width: 50%;
-  margin-top: -10%; 
+  height: 0;
+  margin: -4em auto 0;
+  padding: 80% 0 0 0;
+
+  background: url( ../img/scheme-publicspace-1-01.svg ) no-repeat center top;
+  background-size: 100% auto;
+}
+
+.scheme-publicspace[data-step="0"] div,
+.scheme-publicspace[data-step="3"] div,
+.scheme-publicspace[data-step="6"] div {
+  background-image: url( ../img/scheme-publicspace-1-01.svg );
+}
+
+.scheme-publicspace[data-step="1"] div,
+.scheme-publicspace[data-step="4"] div,
+.scheme-publicspace[data-step="7"] div {
+  background-image: url( ../img/scheme-publicspace-1-02.svg );
+}
+
+.scheme-publicspace[data-step="2"] div,
+.scheme-publicspace[data-step="5"] div,
+.scheme-publicspace[data-step="8"] div {
+  background-image: url( ../img/scheme-publicspace-1-03.svg );
 }
 
 // intro 
