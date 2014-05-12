@@ -283,6 +283,10 @@ blockquote::after {
   height: 0.75em;
   margin-bottom: 0;
 }
+blockquote.hand {
+  width: 60%;
+  white-space: nowrap;
+}
 cite {
   display: block;
   margin: 1.5em 0 0 1.8em;
@@ -300,7 +304,7 @@ blockquote > span {
   color: rgba(255, 255, 255, 0.4);
 }
 pre {
-  font-size: 0.5em;
+  font-size: 0.4em;
 }
 .index {
   margin: 0;
@@ -747,9 +751,10 @@ img {
   overflow: hidden;
 }
 url {
+  display: block;
   width: 100%;
-  margin: 2em 0 0 0;
-  font-size: 1.6em;
+  margin: 4em 0 0 0;
+  font-size: 1em;
   color: rgba(255, 255, 255, 0.4);
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -764,6 +769,17 @@ hash {
   font-size: 8em;
   font-weight: 300;
   text-align: center;
+}
+.screenshot + span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 2em;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#000000));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%);
 }
 .screenshot-share-h0110w img {
   width: 80%;
@@ -1116,6 +1132,7 @@ cloud > node:nth-child( 6 ) {
 .marker + p {
   margin-top: 4em;
   font-size: 1.4em;
+  font-weight: 300;
 }
 @-webkit-keyframes carousel {
   0% {
@@ -1162,15 +1179,16 @@ cloud > node:nth-child( 6 ) {
   top: 14em;
 }
 .covers > pre:nth-child( 1 ) {
-  margin: 8em 0 0 0;
+  margin: 14em 0 0 0;
 }
 .covers > pre:nth-child( 2 ) {
   left: 50%;
-  margin: -18em 0 0 -18em;
+  margin: -6em 0 0 -18em;
 }
 .covers > pre:nth-child( 3 ) {
   left: auto;
   right: 4em;
+  margin: 8em 0 0 0;
 }
 .scheme-exploit svg {
   position: absolute;
@@ -1179,28 +1197,34 @@ cloud > node:nth-child( 6 ) {
   display: block;
   width: 40%;
   height: auto;
-  margin: -10% 0 0 -20%;
+  margin: -15% 0 0 -20%;
 }
 .scheme-exploit svg * {
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
-.scheme-exploit[data-step="0"] svg .node {
+.scheme-exploit[data-step="0"] svg .node,
+.scheme-exploit[data-step="3"] svg .node {
   opacity: 0;
 }
-.scheme-exploit[data-step="0"] svg .connection {
+.scheme-exploit[data-step="0"] svg .connection,
+.scheme-exploit[data-step="3"] svg .connection {
   opacity: 0;
 }
-.scheme-exploit[data-step="1"] svg .node {
+.scheme-exploit[data-step="1"] svg .node,
+.scheme-exploit[data-step="4"] svg .node {
   opacity: 1;
 }
-.scheme-exploit[data-step="1"] svg .connection {
+.scheme-exploit[data-step="1"] svg .connection,
+.scheme-exploit[data-step="4"] svg .connection {
   opacity: 0;
 }
-.scheme-exploit[data-step="2"] svg .node {
+.scheme-exploit[data-step="2"] svg .node,
+.scheme-exploit[data-step="5"] svg .node {
   opacity: 1;
 }
-.scheme-exploit[data-step="2"] svg .connection {
+.scheme-exploit[data-step="2"] svg .connection,
+.scheme-exploit[data-step="5"] svg .connection {
   opacity: 1;
 }
 .scheme-publicspace div {

@@ -29,8 +29,8 @@ var site = ( function() {
         debuglog( 'site.init()' );
         bindEventHandlers();
 
-        path.init();
         sections.init();
+        path.init();
         nav.init();
         win.init();
         content.init();
@@ -473,6 +473,7 @@ var site = ( function() {
             saveLinks();
             rewriteLinks();
             bindEventHandlers();
+
             checkPath( $.address.value() );
         }
 
@@ -552,7 +553,7 @@ var site = ( function() {
 
             $( 'blockquote' ).each( function() {
 
-                var marginLeft = Math.floor( Math.random() * 40 );
+                var marginLeft = Math.floor( Math.random() * 30 );
                 
                 $( this ).css( {
                     'marginLeft' : marginLeft + '%'
@@ -587,6 +588,7 @@ var site = ( function() {
 
                 debuglog( url );
 
+                url = 'http://post-prism.net/h0110w/' + url.hash;
                 el.siblings( 'address' ).text( url );
 
             }, 1000 );
